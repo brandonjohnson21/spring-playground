@@ -2,6 +2,10 @@ package com.example.demo;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.function.BinaryOperator;
+import java.util.stream.Collectors;
+
 @RestController
 @RequestMapping("/math")
 public class MathController {
@@ -36,6 +40,21 @@ public class MathController {
                 op="+";
                 break;
         }
-        return x + " " + op + " " + y + " = " + ans;
+        String ret =  DoubleValueDropZeroes(x) + " " + op + " " + DoubleValueDropZeroes(y) + " = " + DoubleValueDropZeroes(ans);
+        return ret;
+    }
+    @GetMapping("/sum")
+    public String SumWork(@RequestParam List<Double> n) {
+        String retString = n.stream().map(this::DoubleValueDropZeroes).collect(Collectors.joining(" + "));
+        Double ans = n.stream().reduce((sum,val)->sum+val).orElse(Double.POSITIVE_INFINITY);
+        return retString + " = " + DoubleValueDropZeroes(ans);
+    }
+
+
+    private String DoubleValueDropZeroes(Double d) {
+        String ret = String.valueOf(d);
+        if (ret.endsWith(".0"))
+            ret =ret.replace(".0","");
+        return ret;
     }
 }

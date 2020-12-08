@@ -40,7 +40,7 @@ public class MathTest {
     }
     @Test
     public void SumTest() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/math/calculate?x=17&y=2")).andExpect(MockMvcResultMatchers.content().string("19"));
+        mvc.perform(MockMvcRequestBuilders.get("/math/sum?n=17&n=2&n=12")).andExpect(MockMvcResultMatchers.content().string("17 + 2 + 12 = 31"));
     }
 
 }
