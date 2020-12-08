@@ -9,7 +9,15 @@ public class MathService {
     private double y = 0;
     private List<Double> n = new ArrayList<>();
     private String operation = "add";
-
+    public MathService() { };
+    public MathService(String operation, double val1, double val2) {
+        this.operation=operation;
+        this.x=val1;
+        this.y=val2;
+    }
+    public MathService(List<Double> vals) {
+        this.n=vals;
+    }
     public double getX() {
         return x;
     }
@@ -45,6 +53,7 @@ public class MathService {
     public String calculate() {
         double ans = 0;
         String op = "+";
+        operation = (operation==null)?"add": operation;
         switch (operation) {
             case "subtract":
                 ans = x - y;
