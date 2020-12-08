@@ -21,7 +21,7 @@ public class MathController {
     public String calc(MathService mathService) {
         return mathService.calculate();
     }
-    @GetMapping("/sum")
+    @PostMapping("/sum")
     public String SumWork(MathService mathService) {
         return mathService.sum();
     }
