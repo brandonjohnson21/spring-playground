@@ -42,5 +42,10 @@ public class MathTest {
     public void SumTest() throws Exception {
         mvc.perform(MockMvcRequestBuilders.post("/math/sum?n=17&n=2&n=12")).andExpect(MockMvcResultMatchers.content().string("17 + 2 + 12 = 31"));
     }
-
+    @Test
+    public void VolumeTest() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.post("/math/volume/8/4/2")).andExpect(MockMvcResultMatchers.content().string("The volume of a 8X4X2 rectangle is 64"));
+        mvc.perform(MockMvcRequestBuilders.patch("/math/volume/8/2/4")).andExpect(MockMvcResultMatchers.content().string("The volume of a 8X2X4 rectangle is 64"));
+        mvc.perform(MockMvcRequestBuilders.delete("/math/volume/8/8/2")).andExpect(MockMvcResultMatchers.content().string("The volume of a 8X8X2 rectangle is 128"));
+    }
 }

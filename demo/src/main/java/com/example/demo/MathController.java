@@ -25,6 +25,10 @@ public class MathController {
     public String SumWork(MathService mathService) {
         return mathService.sum();
     }
+    @RequestMapping("/volume/{length}/{width}/{height}")
+    public String Volume( @PathVariable int length,  @PathVariable int width,  @PathVariable int height) {
+        return String.format("The volume of a %dX%dX%d rectangle is %d",length,width,height,length*width*height);
+    }
 
 
 
