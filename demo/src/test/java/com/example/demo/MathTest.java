@@ -14,6 +14,7 @@ public class MathTest {
     private MockMvc mvc;
     @Test
     public void PiTest() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.get("/math/pi/5")).andExpect(MockMvcResultMatchers.content().string("3.14159"));
         mvc.perform(MockMvcRequestBuilders.get("/math/pi")).andExpect(MockMvcResultMatchers.content().string("3.141592653589793"));
 
     }
