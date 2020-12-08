@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/math")
@@ -28,7 +29,10 @@ public class MathController {
     public String Volume( @PathVariable Double length,  @PathVariable Double width,  @PathVariable Double height) {
         return MathService.volume(Arrays.asList(length,width,height));
     }
-
+    @PostMapping("/area")
+    public String Area(@RequestParam Map<String, String> params) {
+        return MathService.area(params);
+    }
 
 
 }

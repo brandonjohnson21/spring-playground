@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
@@ -47,5 +48,20 @@ public class MathTest {
         mvc.perform(MockMvcRequestBuilders.post("/math/volume/8/4/2")).andExpect(MockMvcResultMatchers.content().string("The volume of a 8X4X2 rectangle is 64"));
         mvc.perform(MockMvcRequestBuilders.patch("/math/volume/8/2/4")).andExpect(MockMvcResultMatchers.content().string("The volume of a 8X2X4 rectangle is 64"));
         mvc.perform(MockMvcRequestBuilders.delete("/math/volume/8/8/2")).andExpect(MockMvcResultMatchers.content().string("The volume of a 8X8X2 rectangle is 128"));
+    }
+    @Test
+    public void RectAreaTest() throws Exception {
+        MockHttpServletRequestBuilder req = MockMvcRequestBuilders.post("/math/area")
+                .param("type", "rectangle")
+                .param("width","4")
+                .param("height","7");
+        mvc.perform(req).andExpect(MockMvcResultMatchers.content().string("Area of a 4x7 rectangle is 28"));
+    }
+    @Test
+    public void CircleAreaTest() throws Exception {
+        MockHttpServletRequestBuilder req = MockMvcRequestBuilders.post("/math/area")
+                .param("type", "circle")
+                .param("radius","4");
+        mvc.perform(req).andExpect(MockMvcResultMatchers.content().string("Area of a circle with a radius of 4 is 50.265482"));
     }
 }
