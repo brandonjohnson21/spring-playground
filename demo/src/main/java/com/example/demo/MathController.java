@@ -1,9 +1,6 @@
 package com.example.demo;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/math")
@@ -15,5 +12,22 @@ public class MathController {
     @GetMapping("/pi")
     public String pi() {
         return String.format("%.15f", Math.PI);
+    }
+    @GetMapping("/calculate")
+    public String calc(@RequestParam int x, @RequestParam int y, @RequestParam(required=false) String operation) {
+        operation = (operation==null)?"add":operation;
+        switch (operation) {
+            case "subtract":
+                return String.valueOf(x - y);
+            case "divide":
+                if (y != 0)
+                    return String.valueOf(x / y);
+                else
+                    return "Infinity";
+            case "multiply":
+                return String.valueOf(x * y);
+            default:
+                return String.valueOf(x + y);
+        }
     }
 }
