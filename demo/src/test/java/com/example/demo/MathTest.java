@@ -20,22 +20,27 @@ public class MathTest {
     }
     @Test
     public void AddTest() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/math/calculate?operation=add&x=2&y=3")).andExpect(MockMvcResultMatchers.content().string("5"));
+        mvc.perform(MockMvcRequestBuilders.get("/math/calculate?operation=add&x=2&y=3")).andExpect(MockMvcResultMatchers.content().string("2 + 3 = 5"));
     }
     @Test
     public void SubtractTest() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/math/calculate?operation=subtract&x=114&y=3")).andExpect(MockMvcResultMatchers.content().string("111"));
+        mvc.perform(MockMvcRequestBuilders.get("/math/calculate?operation=subtract&x=114&y=3")).andExpect(MockMvcResultMatchers.content().string("114 - 3 = 111"));
     }
     @Test
     public void DivideTest() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/math/calculate?operation=divide&x=15&y=3")).andExpect(MockMvcResultMatchers.content().string("5"));
+        mvc.perform(MockMvcRequestBuilders.get("/math/calculate?operation=divide&x=15&y=3")).andExpect(MockMvcResultMatchers.content().string("15 / 3 = 5"));
     }
     @Test
     public void MultiplyTest() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/math/calculate?operation=multiply&x=17&y=2")).andExpect(MockMvcResultMatchers.content().string("34"));
+        mvc.perform(MockMvcRequestBuilders.get("/math/calculate?operation=multiply&x=17&y=2")).andExpect(MockMvcResultMatchers.content().string("17 * 2 = 34"));
     }
     @Test
     public void NoOpTest() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.get("/math/calculate?x=17&y=2")).andExpect(MockMvcResultMatchers.content().string("17 + 2 = 19"));
+    }
+    @Test
+    public void SumTest() throws Exception {
         mvc.perform(MockMvcRequestBuilders.get("/math/calculate?x=17&y=2")).andExpect(MockMvcResultMatchers.content().string("19"));
     }
+
 }

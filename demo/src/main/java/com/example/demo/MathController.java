@@ -14,20 +14,28 @@ public class MathController {
         return String.format("%.15f", Math.PI);
     }
     @GetMapping("/calculate")
-    public String calc(@RequestParam int x, @RequestParam int y, @RequestParam(required=false) String operation) {
+    public String calc(@RequestParam double x, @RequestParam double y, @RequestParam(required=false) String operation) {
         operation = (operation==null)?"add":operation;
+        double ans = 0;
+        String op = "+";
         switch (operation) {
             case "subtract":
-                return String.valueOf(x - y);
+                ans = x - y;
+                op="-";
+                break;
             case "divide":
-                if (y != 0)
-                    return String.valueOf(x / y);
-                else
-                    return "Infinity";
+                ans=x / y;
+                op="/";
+                break;
             case "multiply":
-                return String.valueOf(x * y);
+                ans = x * y;
+                op="*";
+            break;
             default:
-                return String.valueOf(x + y);
+                ans=x + y;
+                op="+";
+                break;
         }
+        return x + " " + op + " " + y + " = " + ans;
     }
 }
