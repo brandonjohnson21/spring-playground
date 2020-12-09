@@ -1,7 +1,6 @@
 package com.example.demo.flight;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,9 +9,7 @@ import java.util.List;
 
 public class Flight {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm",timezone="UTC")
-    @JsonProperty("Departs")
     Date departs;
-    @JsonProperty("Tickets")
     List<Ticket> tickets= new ArrayList<>();
     public Flight(Date departs, Ticket[] tickets) {
         this.tickets.addAll(Arrays.asList(tickets));
