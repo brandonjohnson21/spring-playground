@@ -18,12 +18,11 @@ public class Ticket {
     public void setPassenger(Passenger passenger) {
         this.passenger = passenger;
     }
-    @JsonProperty("Price")
+
     public Integer getPrice() {
         return price;
     }
-    
-    @JsonProperty("price")
+
     public void setPrice(Integer price) {
         this.price = price;
     }
