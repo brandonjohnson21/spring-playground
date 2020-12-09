@@ -1,7 +1,12 @@
 package com.example.demo.flight;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Passenger {
+    @JsonProperty("FirstName")
     private String firstName;
+    @JsonIgnore
     private String lastName;
     public Passenger(String first, String last) {
         this.firstName=first;

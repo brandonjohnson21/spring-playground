@@ -21,10 +21,10 @@ public class FlightControllerTest {
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.departs", org.hamcrest.Matchers.is("2017-04-21 14:34")))
-                .andExpect(jsonPath("$.tickets[0].passenger.firstName", org.hamcrest.Matchers.is("Some name")))
-                .andExpect(jsonPath("$.tickets[0].passenger.lastName", org.hamcrest.Matchers.is("Some other name")))
-                .andExpect(jsonPath("$.tickets[0].price", org.hamcrest.Matchers.is(200)));
+                .andExpect(jsonPath("$.Departs", org.hamcrest.Matchers.is("2017-04-21 14:34")))
+                .andExpect(jsonPath("$.Tickets[0].Passenger.FirstName", org.hamcrest.Matchers.is("Some name")))
+//                .andExpect(jsonPath("$[0].Tickets.Passenger.LastName", org.hamcrest.Matchers.is("Some other name")))
+                .andExpect(jsonPath("$.Tickets[0].Price", org.hamcrest.Matchers.is(200)));
 
     }
     @Test
@@ -34,14 +34,14 @@ public class FlightControllerTest {
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].departs", org.hamcrest.Matchers.is("2017-04-21 14:34")))
-                .andExpect(jsonPath("$[0].tickets[0].passenger.firstName", org.hamcrest.Matchers.is("Some name")))
-                .andExpect(jsonPath("$[0].tickets[0].passenger.lastName", org.hamcrest.Matchers.is("Some other name")))
-                .andExpect(jsonPath("$[0].tickets[0].price", org.hamcrest.Matchers.is(200)))
-                .andExpect(jsonPath("$[1].departs", org.hamcrest.Matchers.is("2017-04-21 14:34")))
-                .andExpect(jsonPath("$[1].tickets[0].passenger.firstName", org.hamcrest.Matchers.is("Some other name")))
-                .andExpect(jsonPath("$[1].tickets[0].passenger.lastName", org.hamcrest.Matchers.nullValue()))
-                .andExpect(jsonPath("$[1].tickets[0].price", org.hamcrest.Matchers.is(400)));
+                .andExpect(jsonPath("$[0].Departs", org.hamcrest.Matchers.is("2017-04-21 14:34")))
+                .andExpect(jsonPath("$[0].Tickets[0].Passenger.FirstName", org.hamcrest.Matchers.is("Some name")))
+//                .andExpect(jsonPath("$[0].Tickets[0].Passenger.LastName", org.hamcrest.Matchers.is("Some other name")))
+                .andExpect(jsonPath("$[0].Tickets[0].Price", org.hamcrest.Matchers.is(200)))
+                .andExpect(jsonPath("$[1].Departs", org.hamcrest.Matchers.is("2017-04-21 14:34")))
+                .andExpect(jsonPath("$[1].Tickets[0].Passenger.FirstName", org.hamcrest.Matchers.is("Some other name")))
+//                .andExpect(jsonPath("$[1].Tickets[0].Passenger.LastName", org.hamcrest.Matchers.nullValue()))
+                .andExpect(jsonPath("$[1].Tickets[0].Price", org.hamcrest.Matchers.is(400)));
 
     }
 }

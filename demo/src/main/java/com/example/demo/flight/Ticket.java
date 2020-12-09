@@ -1,7 +1,11 @@
 package com.example.demo.flight;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Ticket {
+    @JsonProperty("Passenger")
     Passenger passenger;
+    @JsonProperty("Price")
     Integer price;
     public Ticket(Passenger p, Integer price) {
         this.price=price;
