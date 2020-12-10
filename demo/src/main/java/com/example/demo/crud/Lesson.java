@@ -4,11 +4,14 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
 @Table(name="lessons")
 public class Lesson {
+    public static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonView(Views.SingleView.class)
@@ -44,5 +47,14 @@ public class Lesson {
 
     public void setDeliveredOn(Date deliveredOn) {
         this.deliveredOn = deliveredOn;
+    }
+    public Lesson() { }
+    public Lesson(String title, Date date) {
+        this.title = title;
+        this.deliveredOn = date;
+    }
+    public Lesson(String title, String date) throws ParseException {
+        this.title = title;
+        this.deliveredOn = dateFormat.parse(date);
     }
 }

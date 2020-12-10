@@ -3,6 +3,9 @@ package com.example.demo.crud;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
+import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -49,5 +52,20 @@ public class CrudController {
             this.repository.save(l);
         });
         return lesson;
+    }
+
+    @GetMapping("/find/{lessonTitle}")
+    @JsonView(Views.ListView.class)
+    public Lesson findByTitle(@PathVariable String lessonTitle) {
+        List<Lesson> list =this.repository.findByTitle(lessonTitle);
+        if (list.size() > 0) {
+            return list.get(0);
+        }
+        return null;
+    }
+    @GetMapping("/between")
+    @JsonView(Views.ListView.class)
+    public List<Lesson> findByDate(@RequestParam String date1, @RequestParam String date2) throws ParseException {
+        return this.repository.findByDeliveredOnBetween(Lesson.dateFormat.parse(date1),Lesson.dateFormat.parse(date2));
     }
 }
