@@ -28,7 +28,7 @@ public class CrudController {
         return this.repository.findById(lessonId);
     }
     @DeleteMapping("/{lessonId}")
-    @JsonView(Views.SingleView.class)
+    @JsonView(Views.ListView.class)
     public Optional<Lesson> deleteOne(@PathVariable long lessonId) {
         Optional<Lesson> lesson =this.repository.findById(lessonId);
         if (lesson.isPresent()) {
