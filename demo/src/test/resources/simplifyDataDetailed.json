@@ -1,0 +1,16 @@
+[
+  {
+    "userId": 1467,
+    "user": "someuser",
+    "email": "personal@example.com",
+    "date": "2017-04-02 01:32",
+    "statusText": "Just went snowboarding today!"
+  },
+  {
+    "userId": 98732,
+    "user": "otheruser",
+    "email": "otherprimary@example.com",
+    "date": "2017-04-02 01:32",
+    "statusText": "Great times!"
+  }
+]

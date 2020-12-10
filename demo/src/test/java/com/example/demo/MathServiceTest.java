@@ -1,9 +1,8 @@
 package com.example.demo;
 
 
+import com.example.demo.math.MathService;
 import org.junit.jupiter.api.Test;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.Arrays;
 
@@ -12,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class MathServiceTest {
     @Test
     public void AddTest() throws Exception {
-        assertEquals("2 + 3 = 5",MathService.calculate("add",Arrays.asList(2d,3d)));
+        assertEquals("2 + 3 = 5", MathService.calculate("add",Arrays.asList(2d,3d)));
     }
     @Test
     public void SubtractTest() throws Exception {

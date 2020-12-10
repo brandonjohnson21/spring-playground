@@ -1,0 +1,12 @@
+[
+  {
+    "user": "someuser",
+    "date": "2017-04-02 01:32",
+    "statusText": "Just went snowboarding today!"
+  },
+  {
+    "user": "otheruser",
+    "date": "2017-04-02 01:32",
+    "statusText": "Great times!"
+  }
+]
