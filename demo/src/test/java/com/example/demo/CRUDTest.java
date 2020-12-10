@@ -17,6 +17,8 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import javax.transaction.Transactional;
 
+import java.sql.Date;
+
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -57,7 +59,22 @@ public class CRUDTest {
         long id = posted.getId();
         mvc.perform(MockMvcRequestBuilders.delete("/lessons/" + id)).andExpect(MockMvcResultMatchers.content().string(post));
         mvc.perform(MockMvcRequestBuilders.get("/lessons/" + id)).andExpect(MockMvcResultMatchers.content().string("null"));
-
     }
+
+    @Test
+    @Rollback
+    @Transactional
+    public void PatchTest() throws Exception {
+        Lesson test = new Lesson();
+        test.setTitle("Test");
+        test.setDeliveredOn(Date.valueOf("2017-04-12"));
+        String post = mvc.perform(MockMvcRequestBuilders.post("/lessons").contentType(MediaType.APPLICATION_JSON).content(mapper.writeValueAsString(test))).andExpect(jsonPath("$.title",equalTo("Test") )).andReturn().getResponse().getContentAsString();
+        Lesson posted = mapper.readValue(post, Lesson.class);
+        long id = posted.getId();
+        String update = "{ \"title\":\"Balloons\"}";
+        mvc.perform(MockMvcRequestBuilders.patch("/lessons/" + id).contentType(MediaType.APPLICATION_JSON).content(update)).andExpect(jsonPath("$.title",equalTo("Balloons")));
+        mvc.perform(MockMvcRequestBuilders.get("/lessons/" + id)).andExpect(jsonPath("$.title",equalTo("Balloons")));
+    }
+
 
 }

@@ -28,7 +28,6 @@ public class CrudController {
         return this.repository.findById(lessonId);
     }
     @DeleteMapping("/{lessonId}")
-    @JsonView(Views.ListView.class)
     public Optional<Lesson> deleteOne(@PathVariable long lessonId) {
         Optional<Lesson> lesson =this.repository.findById(lessonId);
         if (lesson.isPresent()) {
@@ -37,5 +36,18 @@ public class CrudController {
         return lesson;
 
     }
-
+    @PatchMapping("/{lessonId}")
+    public Optional<Lesson> updateOne(@PathVariable long lessonId, @RequestBody Lesson updated) {
+        Optional<Lesson> lesson =this.repository.findById(lessonId);
+        lesson.ifPresent(l->{
+            if (updated.getTitle() != null) {
+                l.setTitle(updated.getTitle());
+            }
+            if (updated.getDeliveredOn() != null) {
+                l.setDeliveredOn(updated.getDeliveredOn());
+            }
+            this.repository.save(l);
+        });
+        return lesson;
+    }
 }
