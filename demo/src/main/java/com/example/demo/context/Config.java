@@ -6,18 +6,18 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-@ConfigurationProperties("wordCount")
+@ConfigurationProperties("word-count")
 public class Config {
 
     private Words words;
-    private Boolean caseSensitive;
+    private Boolean casesensitive;
 
     public Boolean isCaseSensitive() {
-        return caseSensitive;
+        return casesensitive;
     }
 
     public void setCaseSensitive(Boolean caseSensitive) {
-        this.caseSensitive = caseSensitive;
+        this.casesensitive = caseSensitive;
     }
 
     public Words getWords() {
@@ -29,13 +29,13 @@ public class Config {
     }
 
     public static class Words {
-        List<String> skip;
+        String[] skip;
 
-        public List<String> getSkip() {
+        public String[] getSkip() {
             return skip;
         }
 
-        public void setSkip(List<String> skip) {
+        public void setSkip(String[] skip) {
             this.skip = skip;
         }
     }
