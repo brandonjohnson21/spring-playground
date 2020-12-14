@@ -9,7 +9,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 
-@WebMvcTest
+@WebMvcTest(MathController.class)
 public class MathTest {
     @Autowired
     private MockMvc mvc;

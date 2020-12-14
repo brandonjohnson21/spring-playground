@@ -9,7 +9,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 
-@WebMvcTest
+@WebMvcTest(HelloController.class)
 public class HelloControllerTest {
     @Autowired
     private MockMvc mvc;

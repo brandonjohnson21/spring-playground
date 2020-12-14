@@ -15,7 +15,7 @@ import java.nio.file.Paths;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 
-@WebMvcTest
+@WebMvcTest(SimplifyController.class)
 public class SimplifyControllerTest {
     @Autowired
     private MockMvc mvc;
